@@ -14,13 +14,15 @@ function App() {
   // fire when app.js loads
   useEffect(() => {
     // ! fire when changes in snapshot -> read from db
-    db.collection('todos').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
+    db.collection('todos').orderBy('timestamp_created', 'desc').onSnapshot(snapshot => {
+      // *** Read from db *** //
       // 1. dissect key info from array from objs into another array
       // 2. set everything in new array to todos array
       setTodos(snapshot.docs.map(doc => ({
         id: doc.id,
         text: doc.data().text,
-        timestamp: doc.data().timestamp
+        timestamp_created: doc.data().timestamp_created,
+        timestamp_modified: doc.data().timestamp_modified
       })))
     })
   }, []) // listener to db: watch changes in element in []
@@ -28,10 +30,12 @@ function App() {
   const addTodo = (event) => {
     event.preventDefault(); // stop refresh
 
-    // write to db
+    // *** Write to db *** //
+    const serverTime = firebase.firestore.FieldValue.serverTimestamp();
     db.collection('todos').add({
       text: input, 
-      timestamp: firebase.firestore.FieldValue.serverTimestamp() // firebase server time (prevent time zone issue)
+      timestamp_created: serverTime, // firebase server time (prevent time zone issue)
+      timestamp_modified: serverTime
     })
 
     setInput(''); // clear input field

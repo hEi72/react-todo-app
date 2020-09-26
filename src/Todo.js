@@ -12,10 +12,10 @@ function Todo(props) {
     const itemId = props.id;
     const labelId = `item-${itemId}`;
     const itemText = props.text;
-    const itemTimestamp = props.timestamp;
+    const itemTimestamp = props.timestamp_modified;
     var itemDate = '';
     var itemTime = '';
-    if (itemTimestamp != null) {
+    if (itemTimestamp != null) { // prevent error before data sent to server and return a server time
         const t = new Date(itemTimestamp.seconds *1000);
         const yyyy = t.getFullYear();
         const m = t.getMonth();
@@ -66,7 +66,7 @@ function Todo(props) {
 
         db.collection('todos').doc(itemId).update({
             text: update,
-            //timestamp: firebase.firestore.FieldValue.serverTimestamp() // update last modified date
+            timestamp_modified: firebase.firestore.FieldValue.serverTimestamp() // update last modified date
         })
     }
     
@@ -92,7 +92,7 @@ function Todo(props) {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">Cancel</Button>
-                    <Button onClick={editItem && handleClose} color="primary" type="submit">Confirm</Button>
+                    <Button onClick={editItem} color="primary" type="submit">Confirm</Button>
                 </DialogActions>
                 </form>
             </Dialog>
