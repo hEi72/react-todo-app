@@ -1,3 +1,7 @@
 .todo_list {
     text-align: center;
 }
+
+.list_icon_text {
+    display: flex;
+}
