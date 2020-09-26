@@ -31,21 +31,21 @@ function Todo(props) {
         itemTime = `${hh}:${mm}:${ss}`;
     }
 
-    // *** State & Function - Checkbox *** //
-    const [checked, setChecked] = React.useState([0]);
+    // // *** State & Function - Checkbox *** //
+    // const [checked, setChecked] = React.useState([0]);
 
-    const handleToggle = (value) => () => {
-        const currentIndex = checked.indexOf(value);
-        const newChecked = [...checked];
+    // const handleToggle = (value) => () => {
+    //     const currentIndex = checked.indexOf(value);
+    //     const newChecked = [...checked];
 
-        if (currentIndex === -1) {
-            newChecked.push(value);
-        } else {
-            newChecked.splice(currentIndex, 1);
-        }
+    //     if (currentIndex === -1) {
+    //         newChecked.push(value);
+    //     } else {
+    //         newChecked.splice(currentIndex, 1);
+    //     }
 
-        setChecked(newChecked);
-    };
+    //     setChecked(newChecked);
+    // };
 
     // *** State & Function - Dialog box open & close *** //
     const [open, setOpen] = React.useState(false);
@@ -68,10 +68,12 @@ function Todo(props) {
     
     // *** Output component *** //
     return (
-        <ListItem key={itemText} role={undefined} dense button onClick={handleToggle(itemText)}>
+        <ListItem key={itemText} role={undefined} dense button 
+        // onClick={handleToggle(itemText)}
+        >
             <ListItemIcon>
             <Checkbox edge="start" tabIndex={-1} disableRipple
-                checked={checked.indexOf(itemText) !== -1}
+                // checked={checked.indexOf(itemText) !== -1}
                 inputProps={{ 'aria-labelledby': labelId }}
             />
             </ListItemIcon>
