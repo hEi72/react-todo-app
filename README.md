@@ -1,3 +1,8 @@
+## Possible features
+* Due date selection (add & edit item)
+* Checkbox archive item
+* Light / dark mode toggle
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
