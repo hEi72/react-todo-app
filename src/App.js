@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import Button from '@material-ui/core/Button';
-import { TextField, List } from '@material-ui/core';
+import { TextField, List, makeStyles } from '@material-ui/core';
 import Todo from './Todo';
 import db from './firebase';
 import firebase from 'firebase';
 
+const useStyles = makeStyles((theme) => ({
+  todo_list: {
+      textAlign: 'center',
+  },
+}));
+
 function App() {
+  const classes = useStyles();
+
   const [todos, setTodos] = useState([]); // print out array
   const [input, setInput] = useState(''); // leave input in input field
 
@@ -47,11 +55,11 @@ function App() {
     <div className="App">
       <h1>My bae and me <span role="img" aria-label="smiley face">👩‍❤️‍👩</span></h1>
       <form>
-        <TextField id="todo-input" label="Write something" type="search" value={input} onChange={event => setInput(event.target.value)}/>
+        <TextField autoFocus id="todo-input" label="Write something" type="search" value={input} onChange={event => setInput(event.target.value)}/>
 
         <Button variant="contained" color="primary" type="submit" onClick={addTodo} disabled={!input}>Add</Button>
       </form>
-      <List className="todo_list">
+      <List className={classes.todo_list}>
         {todos.map(todo => {
           itemId += 1;
 

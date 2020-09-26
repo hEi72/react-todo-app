@@ -1,12 +1,28 @@
 import React, { useState } from 'react';
 import './Todo.css';
-import { ListItem, ListItemIcon, ListItemText, Checkbox, ListItemSecondaryAction, IconButton, Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
+import { ListItem, ListItemIcon, ListItemText, Checkbox, ListItemSecondaryAction, IconButton, Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle, makeStyles } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import db from './firebase';
 import firebase from 'firebase';
 
+const useStyles = makeStyles((theme) => ({
+    paper: {
+        position: 'absolute', 
+        width: 400, 
+        backgroundColor: theme.palette.background.paper, 
+        border: '2px solid #000', 
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2,4,3)
+    },
+    list_icon_text: {
+        display: 'flex',
+    },
+}));
+
 function Todo(props) {
+    const classes = useStyles();
+
     // *** Declare var *** //
     props = props.todo;
     const itemId = props.id;
@@ -59,7 +75,7 @@ function Todo(props) {
     };
 
     // *** State & Function - Edit item *** //
-    const [update, setUpdate] = useState(''); // display properly while typing
+    const [update, setUpdate] = useState(itemText); // display properly while typing
 
     const editItem = (event) => {
         event.preventDefault(); // stop refresh
@@ -67,13 +83,15 @@ function Todo(props) {
         db.collection('todos').doc(itemId).update({
             text: update,
             timestamp_modified: firebase.firestore.FieldValue.serverTimestamp() // update last modified date
-        })
+        });
+
+        handleClose();
     }
     
     // *** Output component *** //
     return (
         <ListItem key={itemText} role={undefined} dense button>
-            <div className="list_icon_text" onClick={handleToggle(itemText)}>
+            <div className={classes.list_icon_text} onClick={handleToggle(itemText)}>
             <ListItemIcon>
             <Checkbox edge="start" tabIndex={-1} disableRipple
                  checked={checked.indexOf(itemText) !== -1}
