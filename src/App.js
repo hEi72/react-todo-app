@@ -98,7 +98,7 @@ function App() {
         <Paper component="form" className={classes.root}>
             <InputBase className={classes.input} placeholder="Write something..." required autoFocus type="search" value={input} onChange={event => setInput(event.target.value)}/>
 
-            <IconButton variant="contained" color="primary" type="submit" onClick={addTodo} disabled={!input}>
+            <IconButton variant="contained" color="secondary" type="submit" onClick={addTodo} disabled={!input}>
               <AddBoxTwoToneIcon />
             </IconButton>
         </Paper>

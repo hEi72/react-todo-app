@@ -93,10 +93,7 @@ function Todo(props) {
         <ListItem key={itemText} role={undefined} dense button>
             <div className={classes.list_icon_text} onClick={handleToggle(itemText)}>
             <ListItemIcon>
-            <Checkbox edge="start" tabIndex={-1} disableRipple
-                 checked={checked.indexOf(itemText) !== -1}
-                inputProps={{ 'aria-labelledby': labelId }}
-            />
+            <Checkbox edge="start" tabIndex={-1} disableRipple checked={checked.indexOf(itemText) !== -1} inputProps={{ 'aria-labelledby': labelId }} />
             </ListItemIcon>
 
             <ListItemText id={labelId} primary={itemText} secondary={`${itemDate} ${itemTime}`} />
@@ -109,18 +106,18 @@ function Todo(props) {
                     <TextField autoFocus margin="dense" id="itemContent" label="New content" fullWidth value={update} onChange={event => setUpdate(event.target.value)} />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose} color="primary">Cancel</Button>
-                    <Button onClick={editItem} color="primary" type="submit">Confirm</Button>
+                    <Button onClick={handleClose} color="default">Cancel</Button>
+                    <Button onClick={editItem} color="default" type="submit">Confirm</Button>
                 </DialogActions>
                 </form>
             </Dialog>
 
             <ListItemSecondaryAction>
-            <IconButton edge="end" aria-label="edit" onClick={handleClickOpen}>
+            <IconButton edge="end" aria-label="edit" onClick={handleClickOpen} disableRipple>
                 <EditIcon />
             </IconButton>
 
-            <IconButton edge="end" aria-label="edit" onClick={event => db.collection('todos').doc(itemId).delete()}>
+            <IconButton edge="end" aria-label="edit" onClick={event => db.collection('todos').doc(itemId).delete()} disableRipple>
                 <DeleteIcon />
             </IconButton>
             </ListItemSecondaryAction>
