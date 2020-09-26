@@ -2,14 +2,14 @@ import firebase from "firebase";
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = { // config from settings
-    apiKey: "AIzaSyBq_TnhNzJTj18OzYJP1gnyeh1Typ9rfJ8",
-    authDomain: "todo-app-jeang.firebaseapp.com",
-    databaseURL: "https://todo-app-jeang.firebaseio.com",
-    projectId: "todo-app-jeang",
-    storageBucket: "todo-app-jeang.appspot.com",
-    messagingSenderId: "43249264418",
-    appId: "1:43249264418:web:381623932deee925c6677b",
-    measurementId: "G-BQMTVC8DL5"
+    apiKey: "AIzaSyBO1ps0eG6vtcfg6VXY8YUOOrTlzrFbIl0",
+    authDomain: "jeang-todo-app.firebaseapp.com",
+    databaseURL: "https://jeang-todo-app.firebaseio.com",
+    projectId: "jeang-todo-app",
+    storageBucket: "jeang-todo-app.appspot.com",
+    messagingSenderId: "48797258169",
+    appId: "1:48797258169:web:ab04fbbc63fee128d9e668",
+    measurementId: "G-XE4YXC5252"
   };
 
 const firebaseApp = firebase.initializeApp(firebaseConfig); // init firebaseApp
