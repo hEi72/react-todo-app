@@ -43,12 +43,6 @@ function App() {
       }),
     [prefersDarkMode],
   );
-  
-  const darkTheme = createMuiTheme({
-    palette: {
-      type: 'dark',
-    },
-  });
 
   const classes = useStyles();
 
